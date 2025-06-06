@@ -1,0 +1,24 @@
+# Thư mục cấu hình của VSCode
+.vscode/
+
+# Các file hệ thống phổ biến
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Môi trường
+.env
+.env.local
+.env.*.local
+
+# Log
+logs
+*.log
+
+# MacOS system files
+*.DS_Store
