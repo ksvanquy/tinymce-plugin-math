@@ -109,17 +109,26 @@ const register = (editor: any) => {
         mode,
         onSubmit: (newLatex, newMode) => {
           const cleanLatex = stripLatexWrappers(newLatex);
+          let newMathEl;
           if (newMode === "block") {
-            mathEl.outerHTML = `<div class="math-tex math-tex-block" contenteditable="false" data-latex="${encodeURIComponent(
-              newLatex
-            )}">\\[${cleanLatex}\\]</div>`;
+            newMathEl = document.createElement("div");
+            newMathEl.className = "math-tex math-tex-block";
+            newMathEl.setAttribute("contenteditable", "false");
+            newMathEl.setAttribute("data-latex", encodeURIComponent(newLatex));
+            newMathEl.textContent = `\\[${cleanLatex}\\]`;
           } else {
-            mathEl.outerHTML = `<span class="math-tex" contenteditable="false" data-latex="${encodeURIComponent(
-              newLatex
-            )}">\\(${cleanLatex}\\)</span>`;
+            newMathEl = document.createElement("span");
+            newMathEl.className = "math-tex";
+            newMathEl.setAttribute("contenteditable", "false");
+            newMathEl.setAttribute("data-latex", encodeURIComponent(newLatex));
+            newMathEl.textContent = `\\(${cleanLatex}\\)`;
           }
-          if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
-            setTimeout(() => MathJax.typesetPromise([editor.getBody()]), 0);
+          const parent = mathEl.parentNode;
+          if (parent && newMathEl) {
+            parent.replaceChild(newMathEl, mathEl);
+            if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
+              MathJax.typesetPromise([newMathEl]);
+            }
           }
         },
         onCancel: () => {},
@@ -129,3 +138,4 @@ const register = (editor: any) => {
 };
 
 tinymce.PluginManager.add("math", register);
+
