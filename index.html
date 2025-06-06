@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinyMCE Math Plugin Demo</title>
+    <script src="./tinymce/tinymce.min.js"></script>
+    <script src="./mathjax/tex-mml-chtml.js"></script>
+    <link href="./tinymce/plugins/math/styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">
+          TinyMCE Math Editor
+        </h1>
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <textarea id="editor" class="w-full"></textarea>
+        </div>
+      </div>
+    </div>
+    <script>
+      tinymce.init({
+        selector: "#editor",
+        license_key: "gpl",
+        height: 500,
+        menubar: false,
+        plugins: [
+          "advlist",
+          "autolink",
+          "lists",
+          "link",
+          "image",
+          "charmap",
+          "anchor",
+          "searchreplace",
+          "visualblocks",
+          "code",
+          "fullscreen",
+          "insertdatetime",
+          "media",
+          "table",
+          "preview",
+          "help",
+          "wordcount",
+          "math",
+        ],
+        external_plugins: {
+          math: "plugins/math/plugin.min.js",
+        },
+        toolbar:
+          "undo redo | blocks | " +
+          "bold italic forecolor | alignleft aligncenter " +
+          "alignright alignjustify | bullist numlist outdent indent | " +
+          "removeformat | help | math",
+      });
+    </script>
+  </body>
+</html>
