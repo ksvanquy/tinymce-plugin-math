@@ -1,0 +1,1 @@
+{"result":{"text":"2 x squared space plus space square root of x over 5 space minus x squared end root space equals space x left parenthesis 4 over x space minus space 5 right parenthesis"},"status":"ok"}
